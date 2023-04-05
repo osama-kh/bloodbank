@@ -11,6 +11,16 @@ class Emergency extends StatefulWidget {
 class _EmergencyState extends State<Emergency> {
   @override
   Widget build(BuildContext context) {
-    return const Placeholder();
+    return Scaffold(
+        drawer: Drawer_main(context),
+        resizeToAvoidBottomInset: false,
+        appBar: AppBar(
+          backgroundColor: Colors.red,
+          title: Text(
+            "Blood bank",
+            style: TextStyle(fontSize: 19),
+          ),
+        ),
+        body: Text("main"));;
   }
 }

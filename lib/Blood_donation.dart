@@ -20,114 +20,11 @@ class _Blood_donationState extends State<Blood_donation> {
   var _Date;
   var _id;
 
-  var Oplus = 0,
-      Aplus = 0,
-      Bplus = 0,
-      ABplus = 0,
-      Ominus = 0,
-      Aminus = 0,
-      Bminus = 0,
-      ABminus = 0,
-      counter = 0;
-
-var data = datasaver.datasaverapp();
-
-  List<String> Blood_types = ["O+", "A+", "B+", "AB+", "O-", "A-", "B-", "AB-"];
-  List<TableRow> blood_statistics = [
-    TableRow(children: [
-      Container(
-          height: 40,
-          alignment: Alignment.center,
-          child: Text("O+", style: TextStyle(fontSize: 18))),
-      Container(
-          height: 40,
-          alignment: Alignment.center,
-          child: Text("A+", style: TextStyle(fontSize: 18))),
-      Container(
-          height: 40,
-          alignment: Alignment.center,
-          child: Text("B+", style: TextStyle(fontSize: 18))),
-      Container(
-          height: 40,
-          alignment: Alignment.center,
-          child: Text("AB+", style: TextStyle(fontSize: 18))),
-      Container(
-          height: 40,
-          alignment: Alignment.center,
-          child: Text("O-", style: TextStyle(fontSize: 18))),
-      Container(
-          height: 40,
-          alignment: Alignment.center,
-          child: Text("A-", style: TextStyle(fontSize: 18))),
-      Container(
-          height: 40,
-          alignment: Alignment.center,
-          child: Text("B-", style: TextStyle(fontSize: 18))),
-      Container(
-          height: 40,
-          alignment: Alignment.center,
-          child: Text("AB-", style: TextStyle(fontSize: 18)))
-    ], decoration: BoxDecoration(color: Colors.black12)),
-    TableRow(children: [
-      Container(
-          height: 40,
-          alignment: Alignment.center,
-          child: Text("-", style: TextStyle(fontSize: 18))),
-      Container(
-          height: 40,
-          alignment: Alignment.center,
-          child: Text("-", style: TextStyle(fontSize: 18))),
-      Container(
-          height: 40,
-          alignment: Alignment.center,
-          child: Text("-", style: TextStyle(fontSize: 18))),
-      Container(
-          height: 40,
-          alignment: Alignment.center,
-          child: Text("-", style: TextStyle(fontSize: 18))),
-      Container(
-          height: 40,
-          alignment: Alignment.center,
-          child: Text("-", style: TextStyle(fontSize: 18))),
-      Container(
-          height: 40,
-          alignment: Alignment.center,
-          child: Text("-", style: TextStyle(fontSize: 18))),
-      Container(
-          height: 40,
-          alignment: Alignment.center,
-          child: Text("-", style: TextStyle(fontSize: 18))),
-      Container(
-          height: 40,
-          alignment: Alignment.center,
-          child: Text("-", style: TextStyle(fontSize: 18)))
-    ], decoration: BoxDecoration(color: Colors.black12)),
-  ];
-
-  List<TableRow> rows = [
-    TableRow(children: [
-      Container(
-          height: 40,
-          alignment: Alignment.center,
-          child: Text("Full name", style: TextStyle(fontSize: 18))),
-      Container(
-          height: 40,
-          alignment: Alignment.center,
-          child: Text("Id", style: TextStyle(fontSize: 18))),
-      Container(
-          height: 40,
-          alignment: Alignment.center,
-          child: Text("Date", style: TextStyle(fontSize: 18))),
-      Container(
-          height: 40,
-          alignment: Alignment.center,
-          child: Text("Blood type", style: TextStyle(fontSize: 18)))
-    ], decoration: BoxDecoration(color: Colors.black12)),
-  ];
+  var data = datasaver.datasaverapp();
 
   void NewRow() {
     setState(() {
-      rows.add(
+      data.rows.add(
         TableRow(
           children: [
             Text(_Fullname, style: TextStyle(fontSize: 16)),
@@ -142,64 +39,72 @@ var data = datasaver.datasaverapp();
   }
 
   String to_percent(var num) {
-    double x = ((num / counter) * 100);
+    double x = ((num / data.counter) * 100);
     return x.toStringAsFixed(1) + "%";
   }
 
   void add_donat_to_stat() {
     setState(() {
       if (_Bloodtype == "O+") {
-        Oplus++;
+        data.Oplus++;
       } else if (_Bloodtype == "A+") {
-        Aplus++;
+        data.Aplus++;
       } else if (_Bloodtype == "B+") {
-        Bplus++;
+        data.Bplus++;
       } else if (_Bloodtype == "AB+") {
-        ABplus++;
+        data.ABplus++;
       } else if (_Bloodtype == "O-") {
-        Ominus++;
+        data.Ominus++;
       } else if (_Bloodtype == "A-") {
-        Aminus++;
+        data.Aminus++;
       } else if (_Bloodtype == "B-") {
-        Bminus++;
+        data.Bminus++;
       } else if (_Bloodtype == "AB-") {
-        ABminus++;
+        data.ABminus++;
       }
-      counter++;
+      data.counter++;
 
-      blood_statistics[1] = TableRow(children: [
+      data.blood_statistics[1] = TableRow(children: [
         Container(
             height: 40,
             alignment: Alignment.center,
-            child: Text(to_percent(Oplus), style: TextStyle(fontSize: 15))),
+            child:
+                Text(to_percent(data.Oplus), style: TextStyle(fontSize: 15))),
         Container(
             height: 40,
             alignment: Alignment.center,
-            child: Text(to_percent(Aplus), style: TextStyle(fontSize: 15))),
+            child:
+                Text(to_percent(data.Aplus), style: TextStyle(fontSize: 15))),
         Container(
             height: 40,
             alignment: Alignment.center,
-            child: Text(to_percent(Bplus), style: TextStyle(fontSize: 15))),
+            child:
+                Text(to_percent(data.Bplus), style: TextStyle(fontSize: 15))),
         Container(
             height: 40,
             alignment: Alignment.center,
-            child: Text(to_percent(ABplus), style: TextStyle(fontSize: 15))),
+            child:
+                Text(to_percent(data.ABplus), style: TextStyle(fontSize: 15))),
         Container(
             height: 40,
             alignment: Alignment.center,
-            child: Text(to_percent(Ominus), style: TextStyle(fontSize: 15))),
+            child:
+                Text(to_percent(data.Ominus), style: TextStyle(fontSize: 15))),
         Container(
             height: 40,
             alignment: Alignment.center,
-            child: Text(to_percent(Aminus), style: TextStyle(fontSize: 15))),
+            child:
+                Text(to_percent(data.Aminus), style: TextStyle(fontSize: 15))),
         Container(
             height: 40,
             alignment: Alignment.center,
-            child: Text(to_percent(Bminus), style: TextStyle(fontSize: 15))),
+            child:
+                Text(to_percent(data.Bminus), style: TextStyle(fontSize: 15))),
         Container(
             height: 40,
             alignment: Alignment.center,
-            child: Text(to_percent(ABminus), style: TextStyle(fontSize: 15)))
+            child:
+                Text(to_percent(data.ABminus), style: TextStyle(fontSize: 15)))
       ], decoration: BoxDecoration(color: Colors.black12));
     });
   }
@@ -238,7 +143,7 @@ var data = datasaver.datasaverapp();
                             _Bloodtype = newValue;
                           });
                         },
-                        items: Blood_types.map<DropdownMenuItem<String>>(
+                        items: data.Blood_types.map<DropdownMenuItem<String>>(
                             (String value) {
                           return DropdownMenuItem<String>(
                             value: value,
@@ -325,7 +230,7 @@ var data = datasaver.datasaverapp();
               ),
               Row(
                 children: [
-                  Text("total donations: " + counter.toString(),
+                  Text("total donations: " + data.counter.toString(),
                       style:
                           TextStyle(fontWeight: FontWeight.bold, fontSize: 15)),
                   Flexible(
@@ -351,7 +256,7 @@ var data = datasaver.datasaverapp();
         Container(
           child: Table(
             border: TableBorder.all(),
-            children: blood_statistics,
+            children: data.blood_statistics,
             defaultVerticalAlignment: TableCellVerticalAlignment.middle,
           ),
         ),
@@ -363,7 +268,7 @@ var data = datasaver.datasaverapp();
               children: [
                 Table(
                   border: TableBorder.all(),
-                  children: rows,
+                  children: data.rows,
                   defaultVerticalAlignment: TableCellVerticalAlignment.middle,
                 )
               ],
