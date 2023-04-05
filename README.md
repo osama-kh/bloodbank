@@ -4,13 +4,16 @@ A new Flutter project.
 
 ## Getting Started
 
-This project is a starting point for a Flutter application.
+This project is about a blood bank manegment system that include a sign in blood meal donation ,and a page for surgery to determine amount of blood meals and its alternative ,and a page to load all all the blood type o- in case of a MCI emergency 
 
-A few resources to get you started if this is your first Flutter project:
+<img src="bloodbank images\1.jpg" width=180 height=350>
+<img src="bloodbank images\2.jpg" width=180 height=350>
+<img src="bloodbank images\3.jpg" width=180 height=350>
+<img src="bloodbank images\4.jpg" width=180 height=350>
+<img src="bloodbank images\5.jpg" width=180 height=350>
+<img src="bloodbank images\6.jpg" width=180 height=350>
+<img src="bloodbank images\7.jpg" width=180 height=350>
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+
+
