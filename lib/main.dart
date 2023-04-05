@@ -18,7 +18,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Flutter Demo',
-      home: const MyHomePage(),
+      home: Blood_donation(),
       routes: {
         'Donation list': (context) => Blood_donation(),
         "Surgrey and trauma": (context) => Surgery_and_trauma(),
@@ -36,8 +36,6 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-
-
   Widget build(BuildContext context) {
     return Scaffold(
         drawer: Drawer_main(context),
