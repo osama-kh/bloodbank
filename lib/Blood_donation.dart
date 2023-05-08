@@ -1,9 +1,6 @@
-import 'dart:developer';
-
 import 'package:bloodbank/Drawer_main.dart';
+import 'package:bloodbank/audit_log.dart';
 import 'package:bloodbank/datasaver.dart';
-import 'package:flutter/src/widgets/framework.dart';
-import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:date_field/date_field.dart';
 import 'package:flutter/material.dart';
 
@@ -19,7 +16,8 @@ class _Blood_donationState extends State<Blood_donation> {
   var _Bloodtype;
   var _Date;
   var _id;
-
+  var log_message;
+  var log = audit_log.main_audit_log();
   var data = datasaver.datasaverapp();
 
   void NewRow() {
@@ -35,6 +33,10 @@ class _Blood_donationState extends State<Blood_donation> {
           //decoration: BoxDecoration(color: Colors.black12),
         ),
       );
+      String formattedDate = "${_Date.year}-${_Date.month}-${_Date.day}";
+      String formattedTime = "${_Date.hour}:${_Date.minute}";
+      log_message =
+          "add blood unit ,donator information : \nfull name: ${_Fullname}. \nID: ${_id}. \nDate: ${formattedDate + " " + formattedTime}. \ntype: ${_Bloodtype}";
     });
   }
 
@@ -245,6 +247,8 @@ class _Blood_donationState extends State<Blood_donation> {
                             print(_Bloodtype.toString());
                             NewRow();
                             add_donat_to_stat();
+                            log.add_log(log_message, DateTime.now(),
+                                "Blood bank department");
                           },
                           child: Text("Submit"))),
                   SizedBox(width: 10)

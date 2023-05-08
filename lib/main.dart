@@ -1,5 +1,7 @@
 import 'package:bloodbank/Blood_donation.dart';
 import 'package:bloodbank/Drawer_main.dart';
+import 'package:bloodbank/audit_log.dart';
+import 'package:bloodbank/audit_log_viewer.dart';
 import 'package:bloodbank/surgery_and_trauma.dart';
 import 'package:date_field/date_field.dart';
 import 'package:flutter/material.dart';
@@ -22,7 +24,8 @@ class MyApp extends StatelessWidget {
       routes: {
         'Donation list': (context) => Blood_donation(),
         "Surgrey and trauma": (context) => Surgery_and_trauma(),
-        "Emergency": (context) => Emergency()
+        "Emergency": (context) => Emergency(),
+        "Audit log": (context) => audit_log_viewer()
       },
     );
   }

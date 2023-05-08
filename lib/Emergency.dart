@@ -2,6 +2,7 @@ import 'package:bloodbank/Blood_donation.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:flutter/material.dart';
+import 'package:bloodbank/audit_log.dart';
 
 import 'Drawer_main.dart';
 import 'datasaver.dart';
@@ -18,6 +19,7 @@ class _EmergencyState extends State<Emergency> {
   String Error_s = "Error, in blood bank data!";
   String fixed_s = "Process completed succesfully!";
   var data = datasaver.datasaverapp();
+  var log = audit_log.main_audit_log();
 
   Future check_blood_storage(report, title) {
     return showDialog(
@@ -80,6 +82,8 @@ class _EmergencyState extends State<Emergency> {
         check_blood_storage(report, fixed_s);
         data.Ominus = 0;
       }
+
+      log.add_log(report, DateTime.now(), "MCI Emergency department");
     });
   }
 

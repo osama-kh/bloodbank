@@ -1,7 +1,6 @@
 import 'package:bloodbank/Drawer_main.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/framework.dart';
-import 'package:flutter/src/widgets/placeholder.dart';
+import 'package:bloodbank/audit_log.dart';
 import 'datasaver.dart';
 
 class Surgery_and_trauma extends StatefulWidget {
@@ -12,10 +11,12 @@ class Surgery_and_trauma extends StatefulWidget {
 }
 
 class _Surgery_and_traumaState extends State<Surgery_and_trauma> {
+  var log = audit_log.main_audit_log();
   var data = datasaver.datasaverapp();
   var _Bloodtype;
   var _Amount;
   var Amount;
+  var error_message;
 
   Future alertwedgit(String report) {
     return showDialog(
@@ -75,15 +76,17 @@ class _Surgery_and_traumaState extends State<Surgery_and_trauma> {
       }
     });
     if (max_value == 0) {
-      alertwedgit("- There are no more blood stock of type " +
+      error_message = "- There are no more blood stock of type " +
           bloodtype +
-          "! \n- There are no alternative in the meaning time!");
+          "! \n- There are no alternative in the meaning time!";
+      alertwedgit(error_message);
     } else {
-      alertwedgit("- There are no more blood stock of type" +
+      error_message = "- There are no more blood stock of type" +
           bloodtype +
           " \n- you can use " +
           max_key.toString() +
-          " as alternative for that.");
+          " as alternative for that.";
+      alertwedgit(error_message);
     }
   }
 
@@ -99,19 +102,21 @@ class _Surgery_and_traumaState extends State<Surgery_and_trauma> {
       }
     });
     if (max_value == 0) {
-      alertwedgit("- There are just " +
+      error_message = "- There are just " +
           blood_type_var.toString() +
           "blood meal in the blood stock of type " +
           bloodtype +
-          "! \n - There are no alternative in the meaning time!");
+          "! \n - There are no alternative in the meaning time!";
+      alertwedgit(error_message);
     } else {
-      alertwedgit("- There are just " +
+      error_message = "- There are just " +
           blood_type_var.toString() +
           " blood meal in the blood stock of type " +
           bloodtype +
           " \n- you can use " +
           max_key.toString() +
-          " as alternative for that.");
+          " as alternative for that.";
+      alertwedgit(error_message);
     }
   }
 
@@ -157,6 +162,11 @@ class _Surgery_and_traumaState extends State<Surgery_and_trauma> {
     ], decoration: BoxDecoration(color: Colors.black12));
   }
 
+  void draw_message_log(blood_T, amount) {
+    error_message =
+        "Darwing process of ${amount} blood unit of type ${blood_T} sucssesfully done.";
+  }
+
   void drawing_blood() {
     setState(() {
       Map<String, int> g = {};
@@ -174,6 +184,7 @@ class _Surgery_and_traumaState extends State<Surgery_and_trauma> {
         } else {
           data.Oplus -= Amount as int;
           data.counter -= Amount as int;
+          draw_message_log(data.Oplus, data.counter);
           update_stastics();
         }
 
@@ -192,6 +203,7 @@ class _Surgery_and_traumaState extends State<Surgery_and_trauma> {
         } else {
           data.Aplus -= Amount as int;
           data.counter -= Amount as int;
+          draw_message_log(data.Aplus, data.counter);
           update_stastics();
         }
 
@@ -210,6 +222,8 @@ class _Surgery_and_traumaState extends State<Surgery_and_trauma> {
         } else {
           data.Bplus -= Amount as int;
           data.counter -= Amount as int;
+          draw_message_log(data.Bplus, data.counter);
+
           update_stastics();
         }
       } else if (_Bloodtype == "AB+") {
@@ -234,6 +248,8 @@ class _Surgery_and_traumaState extends State<Surgery_and_trauma> {
         } else {
           data.ABplus -= Amount as int;
           data.counter -= Amount as int;
+          draw_message_log(data.ABplus, data.counter);
+
           update_stastics();
         }
 
@@ -252,6 +268,8 @@ class _Surgery_and_traumaState extends State<Surgery_and_trauma> {
         } else {
           data.Ominus -= Amount as int;
           data.counter -= Amount as int;
+          draw_message_log(data.Ominus, data.counter);
+
           update_stastics();
         }
 
@@ -269,6 +287,8 @@ class _Surgery_and_traumaState extends State<Surgery_and_trauma> {
         } else {
           data.Aminus -= Amount as int;
           data.counter -= Amount as int;
+          draw_message_log(data.Aminus, data.counter);
+
           update_stastics();
         }
 
@@ -285,6 +305,8 @@ class _Surgery_and_traumaState extends State<Surgery_and_trauma> {
         } else {
           data.Bminus -= Amount as int;
           data.counter -= Amount as int;
+          draw_message_log(data.Bminus, data.counter);
+
           update_stastics();
         }
       } else if (_Bloodtype == "AB-") {
@@ -300,6 +322,8 @@ class _Surgery_and_traumaState extends State<Surgery_and_trauma> {
         } else {
           data.ABminus -= Amount as int;
           data.counter -= Amount as int;
+          draw_message_log(data.ABminus, data.counter);
+
           update_stastics();
         }
       }
@@ -403,6 +427,8 @@ class _Surgery_and_traumaState extends State<Surgery_and_trauma> {
                       onPressed: () {
                         //print(_Bloodtype.toString());
                         drawing_blood();
+                        log.add_log(error_message, DateTime.now(),
+                            "Surgery and Trauma department");
                       },
                       child: Text("Submit"))),
               SizedBox(width: 10)

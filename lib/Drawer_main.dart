@@ -41,6 +41,13 @@ class Drawer_main extends StatelessWidget {
               Navigator.pushNamed(context, 'Emergency');
             },
           ),
+          ListTile(
+            leading: Icon(Icons.text_snippet_outlined),
+            title: Text('Audit log'),
+            onTap: () {
+              Navigator.pushNamed(context, 'Audit log');
+            },
+          ),
         ],
       ),
     );
